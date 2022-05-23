@@ -5,6 +5,7 @@
 
 int main()
 {
+    printf("\n----------")
     Stack *oristack = (Stack *) malloc (sizeof(Stack));
     oristack->head = NULL;
     Stack *newstack = (Stack *) malloc (sizeof(Stack));
@@ -35,4 +36,5 @@ int main()
     printf("\nTime elapsed in readFile(): %f ms\n", elapsed_read);
     printf("Time elapsed in operate(): %f ms\n", elapsed_op);
     printf("Time elapsed in writeResult(): %f ms\n", elapsed_write);
+    printf("\n----------")
 }

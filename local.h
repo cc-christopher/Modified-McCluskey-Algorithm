@@ -1,40 +1,37 @@
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #define MAX_STR 255
 
-//  Nodus data lama
+//  minterm node
 typedef struct Node {
-    char data[MAX_STR];         // string penyimpan satu path
-    int yes;
-    struct Node* next;                 // selanjutnya
+    char data[MAX_STR];                 // minterm in binary
+    int yes;                            // simplified
+    struct Node* next;                  // next
 }Node;
 
-
-// Stack pengakses tumpukan nodus
+// stack
 typedef struct Stack {
-    Node* head;                     // alamat tumpukan teratas
+    Node* head;                         // pointer to the head
 } Stack;
 
-// baca file dan susun stack
+// read minterm file and fill the minterms to a stack
 void readFile(
              Stack *astack,
              int *len);
 
-// fungsi rekursif
+// recursive function to simplify minterms
 int operate(
-            Stack *orione,           // tumpukan string path
-            Stack *newone,         // tumpukan string hasil
-            int n);                         // jumlah variabel
+            Stack *orione,              // origin stack
+            Stack *newone,              // result stack
+            int n);                     // num. of var.
 
 
-// debugging
+// write simplification result
 void writeResult(
-                 Stack *refstack,        // stack path_list
-                 int n);
+                 Stack *refstack,       // reference stack
+                 int n);                // num. of. var.
 
 
 

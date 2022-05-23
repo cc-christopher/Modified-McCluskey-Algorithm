@@ -1,5 +1,3 @@
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "local.h"
@@ -13,32 +11,28 @@ int main()
     newstack->head = NULL;
 
     int n;
-    clock_t start = clock();
+    clock_t start_read = clock();
     readFile(oristack, &n);
-    clock_t stop = clock();
-    double elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+    clock_t stop_read = clock();
+    double elapsed_read = (double)(stop_read - start_read) * 1000.0 / CLOCKS_PER_SEC;
 
-
-clock_t starta = clock();
-    operate(oristack,          // asal
-            newstack,          // hasil
-            n-1                  // jumlah aljabar
+    clock_t start_op = clock();
+    operate(oristack,          // source stack
+            newstack,          // results stack
+            n-1                // num. of variables
             );
                     // -> *Stack
-clock_t stopa = clock();
-    double elapseda = (double)(stopa - starta) * 1000.0 / CLOCKS_PER_SEC;
+    clock_t stop_op = clock();
+    double elapsed_op = (double)(stop_op - start_op) * 1000.0 / CLOCKS_PER_SEC;
 
-
-clock_t startb = clock();
+    clock_t start_write = clock();
     writeResult(newstack,
                 n-1
                 );     // -> CUI
-                clock_t stopb = clock();
-    double elapsedb = (double)(stopb - startb) * 1000.0 / CLOCKS_PER_SEC;
+    clock_t stop_write = clock();
+    double elapsed_write = (double)(stop_write - start_write) * 1000.0 / CLOCKS_PER_SEC;
 
-    printf("\n");
-    printf("Time elapsed in readFile() ms: %f\n", elapsed);
-     printf("Time elapsed in operate() ms: %f\n", elapseda);
-    printf("Time elapsed in writeResult() ms: %f\n", elapsedb);
-
+    printf("\nTime elapsed in readFile(): %f ms\n", elapsed_read);
+    printf("Time elapsed in operate(): %f ms\n", elapsed_op);
+    printf("Time elapsed in writeResult(): %f ms\n", elapsed_write);
 }
